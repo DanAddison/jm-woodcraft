@@ -1,0 +1,77 @@
+.comments-area {
+	background-color: #f5f4f4;
+	
+	.comments-wrapper {
+		max-width: $mq__large;
+		padding: .5em 1em;
+		font-family: $font__body;
+	
+		@media screen and (min-width: $mq__medium) {
+			padding: 1.5em 3em;
+		}
+	}
+
+	.comments-title {
+		font-size: 1.3em;
+	}
+
+	.comment-list {
+		padding-left: 1.25em;
+		margin-left: 0;
+
+		@media screen and (min-width: $mq__large) {
+			margin-left: 2em;
+		}
+	}
+}
+
+.comment-body {
+	a {
+		color: $color__link;
+	}
+
+	.reply {
+		font-family: $font__headings;
+		margin-bottom: 2em;
+	}
+}
+
+.comment-metadata {
+	font-weight: bold;
+	font-size: 90%;
+
+	a {
+		color: $color__text-main;
+		text-decoration: none;
+	}
+}
+
+.comment-content a {
+	word-wrap: break-word;
+}
+
+.comment-content p {
+	margin-bottom: .5em;
+}
+
+.bypostauthor {
+	display: block;
+}
+
+.comment-author {
+	a {
+		font-family: $font__headings;
+		font-size: 1.2em;
+	}
+}
+
+.comment-form {
+
+	input[type="submit"] {
+
+		&:hover,
+		&:focus {
+		background-color: $color__link;
+		}
+	}
+}

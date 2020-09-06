@@ -1,0 +1,82 @@
+/*!
+Theme Name: wheelbarrow
+Theme URI: http://underscores.me/
+Author: Dan Addison
+Author URI: http://www.danaddison.co.uk
+Description: my starter theme based on Underscores, Humescores, and Shift
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: wheelbarrow
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+wheelbarrow is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Variables
+# Mixins
+# Normalize
+# Typography
+# Base elements
+# Forms
+# Navigation
+	## Links
+	## Menus
+# Accessibility
+# Alignments
+# Clearings
+# Content
+	# Layout
+		## Global
+		## content/sidebar or sidebar/content (if used)
+	## Header	
+	## Posts and pages
+	## Comments
+	# Modules	
+		## (blocks and elements)
+	## Footer
+# Widgets
+# Infinite scroll
+# Media
+	## Captions
+	## Galleries
+
+/*--------------------------------------------------------------
+## Utilities: variables, mixins
+--------------------------------------------------------------*/
+@import "utils/utils-glob";
+
+/*--------------------------------------------------------------
+# Base: normalize, elements, typography
+--------------------------------------------------------------*/
+@import "base/base-glob";
+
+/*--------------------------------------------------------------
+# Layout: grid, alignments, clearings, header, footer, sidebar
+--------------------------------------------------------------*/
+@import "layout/layout-glob";
+
+/*--------------------------------------------------------------
+# Pages: global + specific
+--------------------------------------------------------------*/
+@import "pages/pages-glob";
+
+/*--------------------------------------------------------------
+# Components: generally re-useable blocks or modules
+--------------------------------------------------------------*/
+@import "components/components-glob";
+
+/*--------------------------------------------------------------
+# Vendors: 3rd party libraries
+--------------------------------------------------------------*/
+@import "vendors/vendors-glob";

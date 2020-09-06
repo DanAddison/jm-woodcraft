@@ -1,0 +1,45 @@
+.site-footer {
+	font-family: $font__headings;
+	color: $color__text-main;
+	background-color: $color__footer;
+}
+
+.footer__basic {
+	width: 100%;
+	margin: 3em 0;
+	text-align: center;
+
+	.legal {
+		margin-top: 1em;
+
+		@media screen and (min-width: $mq__medium) {
+			width: 35%;
+			text-align: left;	
+		}
+
+		p {
+			margin: 0;
+		}
+	}
+	
+	.social-icons {
+		margin: 1.25em auto;
+		
+		i {
+			padding: .5em;
+		}
+	}
+
+	.credit {
+
+		@media screen and (min-width: $mq__medium) {
+			width: 35%;
+			text-align: right;
+		}
+	}
+
+	@media screen and (min-width: $mq__medium) {
+		display: flex;
+		justify-content: space-between;
+	}
+}

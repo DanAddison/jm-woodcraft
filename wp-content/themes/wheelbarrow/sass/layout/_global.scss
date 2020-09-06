@@ -1,0 +1,79 @@
+.site-content {
+  padding: 3em 0;
+	background-color: $color__background-screen;
+	min-height: calc( 100vh - 200px);
+}
+
+.wrapper {
+	@include center-block;
+	padding: 0 1.5em 0;
+	max-width: $max-width;
+
+	@media screen and (min-width: $mq__menu) {
+		padding: 0 3em 0;
+	}
+}
+/*********************************************************
+## Clearings
+*********************************************************/
+.clear:before,
+.clear:after,
+.entry-content:before,
+.entry-content:after,
+.comment-content:before,
+.comment-content:after,
+.site-content:before,
+.site-content:after,
+.site-footer:before,
+.site-footer:after {
+	@include clearfix;
+}
+
+.clear:after,
+.entry-content:after,
+.comment-content:after,
+.site-header:after,
+.site-content:after,
+.site-footer:after {
+	@include clearfix-after;
+}
+
+.clearfix {
+	@include clearfix;
+}
+
+/*********************************************************
+## Alignments
+*********************************************************/
+// this is mostly for stuff the user puts in the WYSIWYG editor on back end - these calsses are added to the content when they chose its alignment:
+
+.alignleft {
+	display: block;
+	float: left;
+	margin-right: 1.5em;
+}
+
+.alignright {
+	display: block;
+	float: right;
+	margin-left: 1.5em;
+}
+
+.aligncenter {
+	clear: both;
+	@include center-block;
+}
+
+/*********************************************************
+## infinite scroll
+*********************************************************/
+/* Globally hidden elements when Infinite Scroll is supported and in use. */
+.infinite-scroll .posts-navigation, /* Older / Newer Posts Navigation (always hidden) */
+.infinite-scroll.neverending .site-footer { /* Theme Footer (when set to scrolling) */
+	display: none;
+}
+
+/* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before. */
+.infinity-end.neverending .site-footer {
+	display: block;
+}

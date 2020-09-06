@@ -1,0 +1,47 @@
+
+.comment-navigation,
+.posts-navigation,
+.post-navigation {
+	clear: both;
+
+	.site-main & {
+		margin: 0 0 2em;
+		overflow: hidden;
+	}
+
+	.nav-links {
+		font-family: $font__body;
+
+		.post-title {
+			font-family: $font__headings;
+			font-weight: bold;
+
+			&:hover,
+			&:focus {
+				text-decoration: underline;
+			}
+			
+		}
+
+	}
+	
+	.nav-previous {
+		float: left;
+		width: 30%;
+		border-left: solid 2px;
+		padding-left: .5em;
+	}
+
+	.nav-next {
+		float: right;
+		text-align: right;
+		width: 30%;
+		border-right: solid 2px;
+		padding-right: .5em;
+	}
+	
+	.meta-nav {
+		display: block;
+		color: $color__text-main;
+	}
+}

@@ -1,0 +1,84 @@
+.entry-header {
+  
+    h1 {
+    margin: 0;
+    }
+  
+    p {
+      margin-top: 0;
+      font-style: italic;
+    }
+}
+
+.about-entry-content {
+  display: block;
+  
+  @media screen and (min-width: $mq__medium) {
+    display: flex;
+  }
+}
+
+.about-artist-info {
+  margin-right: 2em;
+
+  @media screen and (min-width: $mq__large) {
+    margin-right: 5vw;
+  }
+
+
+  .about-image {
+    margin-bottom: 1em;
+    width: 90%;
+
+    @media screen and (min-width: $mq__small) {
+      width: 70vw;
+    }
+
+    @media screen and (min-width: $mq__medium) {
+      width: 30vw;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .about-email {
+    
+    p {
+      margin-bottom: 0;
+      font-weight: bold;
+    }
+
+    a {
+      color: $color__text-main;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        color: $color__link;
+      }
+    }
+  }
+}
+
+.about-artist-accomplishments {
+  margin-top: 2em;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: .25em;
+    font-weight: normal;
+  }
+
+  ul {
+    margin-left: 0;
+    padding-left: 1.5em;
+    font-style: italic;
+  }
+
+  @media screen and (min-width: $mq__medium) {
+    margin-top: 0;
+  }
+}

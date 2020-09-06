@@ -1,0 +1,367 @@
+<?php
+/**
+ * wheelbarrow functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package wheelbarrow
+ */
+
+if ( ! function_exists( 'wheelbarrow_setup' ) ) :
+	/**
+	 * Sets up theme defaults and registers support for various WordPress features.
+	 *
+	 * Note that this function is hooked into the after_setup_theme hook, which
+	 * runs before the init hook. The init hook is too late for some features, such
+	 * as indicating support for post thumbnails.
+	 */
+	function wheelbarrow_setup() {
+		/*
+		 * Make theme available for translation.
+		 * Translations can be filed in the /languages/ directory.
+		 * If you're building a theme based on wheelbarrow, use a find and replace
+		 * to change 'wheelbarrow' to the name of your theme in all the template files.
+		 */
+		load_theme_textdomain( 'wheelbarrow', get_template_directory() . '/languages' );
+
+		// Add default posts and comments RSS feed links to head.
+		add_theme_support( 'automatic-feed-links' );
+
+		/*
+		 * Let WordPress manage the document title.
+		 * By adding theme support, we declare that this theme does not use a
+		 * hard-coded <title> tag in the document head, and expect WordPress to
+		 * provide it for us.
+		 */
+		add_theme_support( 'title-tag' );
+
+		/*
+		 * Enable support for Post Thumbnails on posts and pages.
+		 *
+		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+		 */
+		add_theme_support( 'post-thumbnails' );
+
+
+		// Add a new image size and chose to crop (you can also pass parameters for where to crop from)
+		add_image_size( 'front-page-slider', 1220, 600, true );
+
+		// This theme uses wp_nav_menu() in one location.
+		register_nav_menus( array(
+			'menu-1' => esc_html__( 'Header', 'wheelbarrow' ),
+			'menu-2' => esc_html__( 'Footer', 'wheelbarrow' ),
+			'menu-3' => esc_html__( 'Sidebar', 'wheelbarrow' ),
+		) );
+
+		/*
+		 * Switch default core markup for search form, comment form, and comments
+		 * to output valid HTML5.
+		 */
+		add_theme_support( 'html5', array(
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+		) );
+
+		// Set up the WordPress core custom background feature.
+		// add_theme_support( 'custom-background', apply_filters( 'wheelbarrow_custom_background_args', array(
+		// 	'default-color' => 'ffffff',
+		// 	'default-image' => '',
+		// ) ) );
+
+		// Add theme support for selective refresh for widgets.
+		add_theme_support( 'customize-selective-refresh-widgets' );
+
+		/**
+		 * Add support for core custom logo.
+		 *
+		 * @link https://codex.wordpress.org/Theme_Logo
+		 */
+		add_theme_support( 'custom-logo', array(
+			'height'      => 250,
+			'width'       => 250,
+			'flex-width'  => true,
+			'flex-height' => true,
+		) );
+	}
+endif;
+add_action( 'after_setup_theme', 'wheelbarrow_setup' );
+
+/**
+ * Set the content width in pixels, based on the theme's design and stylesheet.
+ *
+ * Priority 0 to make it available to lower priority callbacks.
+ *
+ * @global int $content_width
+ */
+function wheelbarrow_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'wheelbarrow_content_width', 640 );
+}
+add_action( 'after_setup_theme', 'wheelbarrow_content_width', 0 );
+
+/**
+ * Register widget area.
+ *
+ * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+ */
+function wheelbarrow_widgets_init() {
+	register_sidebar( array(
+		'name'          => esc_html__( 'Sidebar', 'wheelbarrow' ),
+		'id'            => 'sidebar-1',
+		'description'   => esc_html__( 'Add widgets here.', 'wheelbarrow' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Widgets', 'wheelbarrow' ),
+		'id'            => 'footer-1',
+		'description'   => esc_html__( 'Add footer widgets here.', 'wheelbarrow' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+}
+
+add_action( 'widgets_init', 'wheelbarrow_widgets_init' );
+
+// for layout depending on sidebar:
+	function da_body_classes( $classes ) {
+		// Adds a class of hfeed to non-singular pages.
+		if ( ! is_singular() ) {
+			$classes[] = 'hfeed';
+			$classes[] = 'archive-view';
+		}
+		
+		// Add a class telling us if the sidebar is in use.
+		if ( is_active_sidebar( 'sidebar-1' ) ) {
+			$classes[] = 'has-sidebar';
+		} else {
+			$classes[] = 'no-sidebar';
+		}
+	
+		// Add a class telling us if the page sidebar is in use.
+		if ( is_active_sidebar( 'sidebar-2' ) ) {
+			$classes[] = 'has-page-sidebar';
+		}
+		
+		return $classes;
+	}
+	add_filter( 'body_class', 'da_body_classes' );
+
+/**
+ * Enqueue scripts and styles.
+ */
+function wheelbarrow_scripts() {
+	// enqueue google fonts
+	wp_enqueue_style( 'wheelbarrow-fonts', 'https://fonts.googleapis.com/css?family=Montserrat:300|Raleway:400' );
+
+	wp_enqueue_style( 'wheelbarrow-style', get_stylesheet_uri(), array(), '1.0.9', 'all' );
+
+	wp_enqueue_script( 'footer-scripts', get_template_directory_uri() . '/js/inits.js', array('jquery'), '1.0.1', true );
+
+	wp_enqueue_script( 'wheelbarrow-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+
+	wp_enqueue_script( 'wheelbarrow-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+
+	wp_enqueue_script( 'wheelbarrow-tabbing', get_template_directory_uri() . '/js/user-tabbing.js', array(), '20151215', true );
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'wheelbarrow_scripts' );
+
+/**
+ * Implement the Custom Header feature.
+ */
+require get_template_directory() . '/inc/custom-header.php';
+
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Functions which enhance the theme by hooking into WordPress.
+ */
+require get_template_directory() . '/inc/template-functions.php';
+
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Load Jetpack compatibility file.
+ */
+if ( defined( 'JETPACK__VERSION' ) ) {
+	require get_template_directory() . '/inc/jetpack.php';
+}
+
+// Change Excerpt length
+function wpdocs_custom_excerpt_length( $length ) {
+	return 20;
+	}
+	add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+
+
+// Changing excerpt more
+function new_excerpt_more($more) {
+	global $post;
+	return '… <a href="'. get_permalink($post->ID) . '">' . 'Read More &raquo;' . '</a>';
+	}
+	add_filter('excerpt_more', 'new_excerpt_more');
+
+// Gutenberg 'embed' blocks:
+add_theme_support( 'responsive-embeds' );
+
+
+/**
+ * 
+ * 
+ * Projects custom post type
+ *
+ * 
+ */
+function da_projects_register_content_types() {
+
+	$projects_post_type_args = array(
+		'label' => __( 'Projects' ),
+		'labels' => generate_post_type_labels( 'Project' ),
+		'public' => true,
+		'show_in_nav_menus' => false,
+		'show_in_admin_bar' => true,
+		'menu_position' => 21,
+		'menu_icon' => 'dashicons-admin-multisite',
+		'has_archive' => 'projects',
+		'rewrite' => array(
+			'slug' => 'projects',
+			'with_front' => false,
+		),
+	);
+	register_post_type( 'cpt_project', $projects_post_type_args );
+
+	$project_categories_taxonomy_args = array(
+		'label' => __( 'Project Categories' ),
+		'labels' => array(
+			'singular_name' => __( 'Project Category' ),
+		),
+		'public' => true,
+		'hierarchical' => true,
+		'show_in_nav_menus' => false,
+		'meta_box_cb' => false,
+		'rewrite' => array(
+			'slug' => 'projects-categories',
+			'with_front' => false,
+		),
+	);
+	register_taxonomy( 'ct_project_category', 'cpt_project', $project_categories_taxonomy_args );
+
+	$project_sectors_taxonomy_args = array(
+		'label' => __( 'Tags' ),
+		'labels' => array(
+			'singular_name' => __( 'Tag' ),
+		),
+		'public' => true,
+		'show_in_nav_menus' => false,
+		'meta_box_cb' => false,
+		'rewrite' => array(
+			'slug' => 'projects-tags',
+			'with_front' => false,
+		),
+	);
+	register_taxonomy( 'ct_project_tag', 'cpt_project', $project_sectors_taxonomy_args );
+}
+add_action( 'init', 'da_projects_register_content_types', 1 );
+
+function da_projects_enqueue_scripts() {
+
+	if( is_singular( 'cpt_project' ) || is_page( 'Home' ) ) {    
+    wp_enqueue_script( 'slick', get_template_directory_uri() . '/js/slick.js', array( 'jquery' ), '1.8.1', true );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'da_projects_enqueue_scripts' );
+
+// limit number of posts in archives
+function da_projects_pre_get_posts( $query ) {
+	if( is_admin() || ! $query->is_main_query() )
+		return;
+	if( is_projects_archive() ) {
+		$query->set( 'posts_per_page', 12 );
+	}
+}
+add_action( 'pre_get_posts', 'da_projects_pre_get_posts' );
+
+function da_projects_archive_title( $title ) {
+	if( is_post_type_archive( 'cpt_project' ) ) {
+		$title = 'Projects';
+	}
+	return $title;
+}
+add_filter( 'get_the_archive_title', 'da_projects_archive_title' );
+
+function generate_post_type_labels( $singular, $plural = null ) {
+	$plural = ! is_null( $plural ) ? $plural : $singular . 's';
+	$labels = (array) get_post_type_labels( get_post_type_object( 'post' ) );
+
+	$search = array(
+		$labels['name'],
+		strtolower( $labels['name'] ),
+		$labels['singular_name'],
+		strtolower( $labels['singular_name'] )
+	);
+
+	$replace = array(
+		$plural,
+		strtolower( $plural ),
+		$singular,
+		strtolower( $singular )
+	);
+
+	$labels = str_replace( $search, $replace, $labels );
+
+	return $labels;
+}
+
+function get_projects( $args = array() ) {
+	$args['post_type'] = 'cpt_project';
+	return get_posts( $args );
+}
+
+function get_projects_by_type( $type, $args = array() ) {
+	$tax_query = array(
+		'taxonomy' => 'ct_project_type',
+		'terms' => $type,
+	);
+	if( is_string( $type ) ) {
+		$tax_query['field'] = 'slug';
+	}
+	$args['tax_query'][] = $tax_query;
+	return get_projects( $args );
+}
+
+function get_projects_by_sector( $tag, $args = array() ) {
+	$args['tax_query'][] = array(
+		'taxonomy' => 'ct_project_tag',
+		'terms' => $tag,
+	);
+	return get_projects( $args );
+}
+
+function is_projects_archive() {
+	return ( is_post_type_archive( 'cpt_project' ) || is_tax( array( 'ct_project_type', 'ct_project_sector' ) ) );
+}
+
+function get_project_gallery( $post_id = false ) {
+	return get_field( 'project_gallery', $post_id );
+}
+
+function project_featured_image( $post_id = false, $size = 'medium_large' ) {
+	print wp_get_attachment_image( get_field( 'featured_image', $post_id ), $size );
+}

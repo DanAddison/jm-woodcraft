@@ -1,0 +1,35 @@
+.home {
+
+  .entry-content {
+    max-width: 800px;
+    text-align: center;
+    // padding-top: 0;
+    padding-right: 0;
+  }
+}
+
+.carousel .slide {
+  width: 100%;
+  overflow: hidden;
+  
+  img {
+    max-height: 500px;
+    display: block;
+    object-fit: cover;
+  }
+}
+
+.featured-projects {
+  margin-top: 4em;
+  @include clearfix;
+
+  h2 {
+    text-align: center;
+    font-size: 1.75em;
+
+    @media screen and (min-width: $mq__medium) {
+      font-size: 2em;
+
+    }
+  }
+}

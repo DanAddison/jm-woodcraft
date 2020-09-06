@@ -1,0 +1,59 @@
+.header-image {
+  max-height: 85vh;
+  overflow: hidden;
+  // the custom-header file (in 'inc' folder) sets flex-height to true, so when uploading and cropping a header image it can be taller than 400px if desired; the above rules prevent a really large image on a really large screen from filling the viewport entirely.. nav menu will now always be visible
+
+  img {
+    display: block;
+    width: 100vw;
+  }
+}
+
+.site-header {
+  padding: 1em 0;
+  font-family: $font__headings;
+  color: $color__text-main;
+  background-color: $color__header;
+
+  .wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.site-branding {
+  width: 25%;
+  min-width: 140px;
+  max-width: 260px;
+  z-index: 100;
+  align-self: flex-end;
+
+  .custom-logo-link {
+    img {
+      display: block;
+      margin: 0;
+    }
+  }
+}
+
+.site-title {
+  margin: 0;
+  padding: 0;
+  font-size: 2em;
+  font-weight: 400;
+
+  a {
+    color: $color__text-main;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      font-weight: bold;
+    }
+  }
+}
+
+.site-description {
+  display: none;
+}

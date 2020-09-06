@@ -1,0 +1,30 @@
+// hides the reCAPTCHA on every page
+.grecaptcha-badge {
+  display: none !important;
+}
+// shows the reCAPTCHA on the contact page only
+.page-id-19 .grecaptcha-badge {
+  display: block !important;
+}
+
+
+.contact-form {
+  margin-top: 3em;
+}
+
+// prevent name and email fields breaking beyond window on smallest screens
+.wpcf7 input {
+  width: 100%;
+}
+
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+  width: 100px;
+  border: 1px solid $color__input-border;
+
+  &:hover,
+  &:focus {
+    background-color: $color__link-hover;
+    color: white;
+  }
+}
+

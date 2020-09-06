@@ -1,0 +1,81 @@
+.single-project__image {
+  margin-bottom: 0;
+  // height: auto;
+  max-height: 450px;
+  width: 100%;
+  // overflow: hidden; //this ends up hiding the dots
+  margin-bottom: 1em;
+  
+  img {
+    max-height: 450px;
+    display: block;
+    object-fit: contain;
+  }
+}
+
+.single-project__gallery {
+  display: none;
+
+  @media screen and (min-width: $mq__large) {
+    display: block;
+  }
+}
+
+.single-project__thumb {
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+  padding-right: .5em;
+  padding-bottom: .5em;
+  float: left;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.single-project__info {
+  margin-bottom: 1em;
+  
+  .title {
+    color: $color__text-main;
+    line-height: 1em;
+  }
+  
+  .client {
+    text-transform: uppercase;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid $color__text-main;
+    margin-bottom: 1em;
+  }
+
+  .copy {
+    font-family: $font__body;
+  }
+  
+  @media screen and (min-width: $mq__medium) {
+    margin-right: 2em;
+  }
+
+  @media screen and (min-width: $mq__large) {
+    margin-left: 2em;
+    margin-right: 0;
+
+    .client {
+      margin-bottom: .5em;
+    }
+  }
+
+  .project-categories,
+  .project-tags {
+
+    .title {
+      display: inline-block;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+  }
+}
