@@ -29,7 +29,7 @@
 				<?php require get_stylesheet_directory() . '/inc/social-icons.php' ?>
 
 				<div class="credit">
-					<p>Website by <a href="https://danaddisoncreative.com/" target="_blank">Dan Addison</a></p>
+					<p>Website by <a href="https://danaddison.uk/" target="_blank">Dan Addison</a></p>
 				</div><!-- .credit -->
 
 			</div><!-- .footer__basic -->
