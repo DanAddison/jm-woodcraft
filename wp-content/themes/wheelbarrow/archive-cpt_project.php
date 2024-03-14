@@ -36,13 +36,6 @@ get_header(); ?>
 						'title_li'     => '',
 					); ?>
 
-				<div class="project-category-list">
-					<ul>
-						<span>Categories:</span> 
-						<?php wp_list_categories( $categories ); ?>
-					</ul>
-				</div>
-
 				<div class="grid">
 
 					<?php while ( have_posts() ) : the_post(); ?>
@@ -61,12 +54,6 @@ get_header(); ?>
 									</div>
 
 								</a>
-
-								<?php if( has_term( '', 'ct_project_tag' ) ) : ?>
-								<p class="project__overlay-category">
-									<?php echo get_the_term_list( get_the_ID(), 'ct_project_tag', 'Tags: ', ', ' ); ?>
-								</p>
-								<?php endif; ?>
 
 							</div><!-- project__overlay -->
 
@@ -87,13 +74,6 @@ get_header(); ?>
 					'title_li'     => '',
 					);
 				?>
-				
-				<div class="project-tag-list">
-					<ul>
-					<span>Tags:</span> 
-					<?php wp_list_categories( $tags ); ?>
-					</ul>
-				</div>
 					
 			</div><!-- wrapper -->
 			

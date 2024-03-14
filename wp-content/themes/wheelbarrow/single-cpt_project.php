@@ -62,24 +62,6 @@ get_header(); ?>
 							<div class="copy">
 								<?php the_content(); ?>
 							</div>
-
-							<?php if( has_term( '', 'ct_project_category' ) ) : ?>
-
-							<div href="" class="project-categories">
-								<p class="title">Project Categories:</p>
-								<?php echo get_the_term_list( get_the_ID(), 'ct_project_category', '', ' &sol; ' ); ?>
-							</div>
-
-							<?php endif; ?>
-
-							<?php if( has_term( '', 'ct_project_tag' ) ) : ?>
-
-							<div href="" class="project-tags">
-								<p class="title">Project Tags:</p>
-								<?php echo get_the_term_list( get_the_ID(), 'ct_project_tag', '', ' &sol; ' ); ?>
-							</div>
-
-							<?php endif; ?>
 					
 						</div>
 						
